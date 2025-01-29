@@ -134,7 +134,10 @@ AWS_STORAGE_BUCKET_NAME = 'sumannayika'
 AWS_S3_REGION_NAME = 'ap-south-1'  # e.g., 'us-east-1'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
 AWS_DEFAULT_ACL = 'public-read'  # Allow public access
-AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_DEFAULT_ACL = None  # Optional, prevents public access issues
+AWS_S3_FILE_OVERWRITE = False  # Prevent overwriting of files with the same name
+AWS_QUERYSTRING_AUTH = False  # To make media URLs publicly accessible
+
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
