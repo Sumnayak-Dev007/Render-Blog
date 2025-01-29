@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-0bugj9_pv)0&f09#7u%rj6$$n3a&w0t1ue%j8#shjikkm0vs%r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG","FALSE").lower() == 'true'
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS","").split(',')
 
 
 # Application definition
@@ -88,8 +88,8 @@ DATABASES = {
     }
 }
 
-databse_url = os.environ.get("DATABASE_URL")
-DATABASES['default']=dj_database_url.parse(databse_url)
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default']=dj_database_url.parse(database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -134,6 +134,7 @@ STATIC_ROOT = BASE_DIR / 'assets'
 MEDIA_ROOT = BASE_DIR/'media'
 MEDIA_URL = '/uploads/'
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

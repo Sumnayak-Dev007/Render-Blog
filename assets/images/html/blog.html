@@ -6,22 +6,31 @@
   <title>Login to Get Started</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body>
 
-  <!-- Card container -->
-  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-    <h1 class="text-2xl font-semibold text-center text-gray-800">Welcome Back!</h1>
-    <p class="text-center text-gray-600 mt-2">To get started, please login first.</p>
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow p-4 w-full">
+        
+            <h1 class="text-2xl font-bold text-center px-4">ArtiFacts</h1>
+    </header>
 
-    <div class="mt-6 text-center">
-      <p class="text-gray-700">New To Blogging?</p>
-      <a href="{% url 'home' %}" class="text-blue-500 hover:text-blue-700 font-semibold">Create one here</a>
-    </div>
+    <div class="bg-gray-100 flex items-center justify-center min-h-[80vh]">
 
-    <div class="mt-8 flex justify-center">
-      <button class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Login</button>
-    </div>
-  </div>
-
+        <!-- Card container -->
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full hover:ring-2 hover:ring-blue-500">
+          <h1 class="text-2xl font-semibold text-center text-gray-800">Welcome Back!</h1>
+          <p class="text-center text-gray-600 mt-2">To get started, please login first.</p>
+      
+          <div class="mt-6 text-center">
+            <p class="text-gray-700">New To Blogging?</p>
+            <a href="/sign_up" class="text-blue-500 hover:text-blue-700 font-semibold">Create one here</a>
+          </div>
+      
+          <div class="mt-8 flex justify-center">
+            <a href="/new_login/" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Login</a>
+          </div>
+        </div>
+      
+      </div>
 </body>
+
 </html>
