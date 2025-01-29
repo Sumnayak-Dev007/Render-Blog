@@ -1,0 +1,61 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="flex flex-col md:flex-row h-auto md:h-screen bg-gray-50">
+      <!-- Left Side (Blue Background) -->
+    <div class="bg-blue-600 text-white md:w-1/3 w-full flex flex-col justify-between items-center p-6 pt-16 order-2 md:order-none">
+        <div>
+            <h1 class="text-4xl font-bold mb-4 text-center md:text-left">Level up with</h1>
+            <h1 class="text-4xl font-bold text-center md:text-left">ArtiFact Next</h1>
+        </div>
+        
+        <div class="mt-8 flex flex-col justify-around h-auto md:h-1/2">
+            <div>
+                <a href="#" class="block text-white transition-bg-white text-lg mb-2 bg-blue-500 rounded-lg text-center hover:bg-white hover:text-blue-500 py-2 px-4">ArtiFact Help Center</a>
+                <a href="#" class="block text-white transition-bg-white text-lg bg-blue-500 rounded-lg text-center hover:bg-white hover:text-blue-500 py-2 px-4">ArtiFact Community</a>
+            </div>
+            
+            <div class="mt-6 text-center text-sm text-gray-400">
+                <a href="#" class="hover:underline">Privacy Policy</a> | <a href="#" class="hover:underline">Terms of Service</a>
+                <p>Copyright © 2025 ArtiFact. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+             
+                <!-- Right Side (Form) -->
+    <div class="md:w-2/3 w-full flex items-center justify-center p-4 order-1 md:order-none">
+        <div class="bg-white shadow-2xl rounded-lg p-6 md:p-8 max-w-md w-full">
+            <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center md:text-left">Hey there!</h1>
+            <h2 class="text-xl text-gray-600 mb-6 text-center md:text-left">Best wishes for your blogging journey</h2>
+
+            <form method="POST" class="space-y-4">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">
+                    Continue
+                </button>
+            </form>
+            <a href="{% url 'password_reset' %}" class="text-blue-500 underline text-center mt-2 block">Forgot Password?</a>
+
+            <div class="flex flex-col md:flex-row mt-5 justify-center items-center space-y-3 md:space-y-0 md:space-x-6">
+                <p class="font-semibold">Don't have an account?</p>
+                <a href="{% url 'sign_up' %}" class="bg-blue-500 text-white hover:text-white px-6 py-2 rounded-md shadow hover:bg-blue-400 transform hover:scale-105 transition-transform">
+                    Sign up
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+{% endblock %}

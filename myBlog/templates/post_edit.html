@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{%  load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="flex justify-center items-center w-screen">
+    <div class="bg-white rounded-lg shadow-lg w-full">
+      <div class="flex justify-between items-center p-4 border-b">
+        <h1 class="text-lg font-semibold" id="exampleModalLabel">Edit Your Blog</h1>
+        
+      </div>
+      <div class="p-4">
+        <div class="mx-2 p-1">
+          <img src="{{user.profile.pic.url}}" alt="User" class="h-32 w-32 rounded-full border-4 border-blue-500">
+        </div>
+        <form method="post" enctype="multipart/form-data">
+          {%  csrf_token %}
+          {{form|crispy}}
+          <div class="flex justify-end p-4 border-t">
+              <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded">Save changes</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+  {%  endblock %}
