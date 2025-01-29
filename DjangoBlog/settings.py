@@ -88,8 +88,8 @@ DATABASES = {
     }
 }
 
-database_url = os.environ.get("DATABASE_URL")
-DATABASES['default']=dj_database_url.parse(database_url)
+# database_url = os.environ.get("DATABASE_URL")
+# DATABASES['default']=dj_database_url.parse(database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -149,4 +149,7 @@ print("EMAIL_HOST_PASSWORD:", EMAIL_HOST_PASSWORD)
 print(EMAIL_HOST_USER)
  # Default email for sending password reset links
 DEFAULT_FROM_EMAIL = 'nsumankumari225@gmail.com'  # Replace with your preferred sender email
+
+import django_heroku
+django_heroku.settings(locals())
 
