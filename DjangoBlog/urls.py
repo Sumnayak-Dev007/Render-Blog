@@ -25,13 +25,8 @@ urlpatterns = [
     path('', include('user.urls')),
 ]
 if settings.DEBUG:
-    # Serve media files in development using Django's static function
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-else:
-    # Serve media files in production using 'serve' view
-    urlpatterns += [
-        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    ]
+    
     
 
 
