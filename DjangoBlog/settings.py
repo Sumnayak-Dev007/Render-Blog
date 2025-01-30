@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'crispy_forms',
     'crispy_tailwind',
+    'storages',
 ]
 
 MIDDLEWARE = [
