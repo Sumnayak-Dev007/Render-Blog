@@ -8,9 +8,9 @@ from django.core.validators import FileExtensionValidator
 
 def get_pic_path(request,filename):
     original_filename=filename
-    nowTime=datetime.datetime.now().strftime('%Y%m%d%H:%M:%S')
-    filename = "%s%s" % (nowTime,original_filename)
-    return os.path.join('pfp/',filename)
+    nowTime = datetime.datetime.now().strftime('%Y%m%d%H%M%S')  # Removed `:`
+    filename = f"{nowTime}_{original_filename}"
+    return f"pfp/{filename}"
 
 
 
