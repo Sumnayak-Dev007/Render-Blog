@@ -4,11 +4,11 @@ import datetime,os
 # Create your models here.
 
 
-def get_image_path(request,filename):
-    original_filename=filename
-    nowTime=datetime.datetime.now().strftime('%Y%m%d%H:%M:%S')
-    filename = "%s%s" % (nowTime,original_filename)
-    return os.path.join('images/',filename)
+def get_image_path(instance, filename):  # `request` → `instance`
+    original_filename = filename
+    nowTime = datetime.datetime.now().strftime('%Y%m%d%H%M%S')  # Removed `:`
+    filename = f"{nowTime}_{original_filename}"
+    return f"images/{filename}"  # Removed `os.path.join()`
 
 
 class UserPost(models.Model):

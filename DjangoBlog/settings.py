@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import logging
+from storages.backends.s3boto3 import S3Boto3Storage
 import os,dj_database_url
 from decouple import Config,RepositoryEnv
 
@@ -25,9 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0bugj9_pv)0&f09#7u%rj6$$n3a&w0t1ue%j8#shjikkm0vs%r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG","FALSE").lower() == 'true'
+# DEBUG = os.environ.get("DEBUG","FALSE").lower() == 'true'
+DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS","").split(',')
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS","").split(',')
 
 
 # Application definition
@@ -89,8 +93,8 @@ DATABASES = {
     }
 }
 
-database_url = os.environ.get("DATABASE_URL")
-DATABASES['default']=dj_database_url.parse(database_url)
+# database_url = os.environ.get("DATABASE_URL")
+# DATABASES['default']=dj_database_url.parse(database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -131,26 +135,28 @@ LOGOUT_REDIRECT_URL = '/'
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'sumannayika'
-AWS_S3_REGION_NAME = 'ap-south-1'  # e.g., 'us-east-1'
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
-AWS_DEFAULT_ACL = 'public-read'  # Allow public access
-AWS_DEFAULT_ACL = None  # Optional, prevents public access issues
-AWS_S3_FILE_OVERWRITE = False  # Prevent overwriting of files with the same name
-AWS_QUERYSTRING_AUTH = False  # To make media URLs publicly accessible
+AWS_STORAGE_BUCKET_NAME = 'myawsblogbucket'
+AWS_S3_REGION_NAME = 'eu-north-1'
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
+AWS_S3_ADDRESSING_STYLE = "path"  # Use your bucket's region
+AWS_DEFAULT_ACL = None 
+AWS_S3_FILE_OVERWRITE = False
+AWS_QUERYSTRING_AUTH = False
+print(AWS_ACCESS_KEY_ID)
+print(AWS_SECRET_ACCESS_KEY)
 
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+# MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR/'media'
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
-STATIC_ROOT = os.path.join(BASE_DIR,'assets')
-
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),  # This tells Django to look for static files in the "static" folder at the root level
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -166,6 +172,7 @@ print(EMAIL_HOST_USER)
  # Default email for sending password reset links
 DEFAULT_FROM_EMAIL = 'nsumankumari225@gmail.com'  # Replace with your preferred sender email
 
-import django_heroku
-django_heroku.settings(locals())
-
+# import django_heroku
+# django_heroku.settings(locals())
+logger = logging.getLogger(__name__)
+logger.debug("Default file storage: %s", DEFAULT_FILE_STORAGE)
