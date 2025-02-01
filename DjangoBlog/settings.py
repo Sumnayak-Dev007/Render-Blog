@@ -175,5 +175,4 @@ DEFAULT_FROM_EMAIL = 'nsumankumari225@gmail.com'  # Replace with your preferred 
 
 # import django_heroku
 # django_heroku.settings(locals())
-logger = logging.getLogger(__name__)
-logger.debug("Default file storage: %s", DEFAULT_FILE_STORAGE)
+

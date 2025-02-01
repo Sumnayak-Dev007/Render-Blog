@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .forms import SignUpForm,EditProfile,EditPro
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
+from myBlog.models import UserPost
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -36,8 +37,11 @@ def userProfile(request):
     else:
         u_form = EditProfile(instance=request.user)
         p_form = EditPro(instance=request.user.profile)
+
+    blog_count = UserPost.objects.filter(author=request.user).count()
     context = {
         'u_form':u_form,
-        'p_form':p_form
+        'p_form':p_form,
+        'blog_count':blog_count
     }
     return render(request,'User/profile.html',context)
