@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserPost,Comments
+from .models import UserPost,Comments,Contact,Catblog
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -12,4 +12,21 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comments
         fields = ['content']
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['subject','message']
+
+class CatblogForm(forms.ModelForm):
+    class Meta:
+        model = Catblog
+        fields = ['category','slug',
+                  'title','blog_image','small_description','descriptions',
+                  'tag','meta_title','meta_keywords']
+        labels = {
+            'slug': 'Unique Name',  
+            'meta_title': 'Search Title',  
+            'meta_keywords': 'Search Keywords'
+        }
         

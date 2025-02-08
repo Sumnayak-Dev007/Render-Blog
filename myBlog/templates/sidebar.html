@@ -1,0 +1,85 @@
+{% load static %}
+{% load tz %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrea - Tailwind CSS Template</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <!-- Menu Button (Visible for both mobile and laptop) -->
+  <div class="fixed top-0 left-0 w-full bg-white shadow-md p-4 z-[60] md:hidden">
+    <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+      <i class="fas fa-bars text-2xl"></i>
+    </button>
+  </div>
+  
+  <!-- Sidebar (unchanged) -->
+  <aside id="sidebar" class="w-64 h-screen bg-white text-black fixed top-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 md:z-40 z-[60] p-4">
+    <div class="p-6">
+      <h1 class="text-2xl font-bold mb-4">Arti <span class="text-gray-600">Facts</span></h1>
+      <nav class="mt-10">
+        <ul>
+          <li class="mb-4"><a href="/" class="text-gray-700 hover:text-purple-700">Home</a></li>
+          {% for cat in category %}
+          <li class="mb-4"><a href="{% url 'category_view' cat.slug %}" class="text-gray-700 hover:text-purple-700">{{cat.name}}</a></li>
+          {% endfor %}
+          <li class="mb-4"><a href="{% url 'about' %}" class="text-gray-700 hover:text-purple-700">About</a></li>
+          <li class="mb-4"><a href="{% url 'contact' %}" class="text-gray-700 hover:text-purple-700">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="mt-10">
+      <h3 class="text-lg font-semibold mb-4 mt-10">Subscribe for Arti Facts</h3>
+      <form class="flex">
+        <input type="text" placeholder="Enter Email Address" class="p-2 rounded-l bg-gray-200 text-blue-600 w-[75%]">
+        <button class="bg-blue-600 text-white  p-2 rounded-r"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+    <p class="text-sm text-black mt-11">
+      Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fas fa-heart text-blue-600"></i> by <a href="/" class="text-gray-800">ArtiFacts</a>
+    </p>
+  </aside>
+
+  <script>
+    // Menu toggle button functionality
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const body = document.querySelector('body');
+
+    // Toggle the sidebar when menu button is clicked
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');  // Toggles sidebar visibility
+    });
+
+    // Close the sidebar when clicking anywhere outside the sidebar or menu button (on mobile views)
+    body.addEventListener('click', (event) => {
+      // If click is outside the sidebar and menu button, close the sidebar
+      if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+        sidebar.classList.add('-translate-x-full');
+      }
+    });
+
+    // Prevent the click event from closing the sidebar when clicking inside the sidebar
+    sidebar.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+
+    // Prevent the click event from closing the sidebar when clicking on the menu button
+    menuToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+  </script>
+</body>
+</html>

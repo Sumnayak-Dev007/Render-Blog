@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tz %}
+{% block content %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrea - Tailwind CSS Template</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+   <style>
+    /* Fade-in effect */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Zoom-in effect */
+    .zoom:hover img {
+        transform: scale(1.1);
+        transition: transform 0.3s ease-in-out;
+    }
+</style>
+  </head>
+  <body class="bg-gray-100">
+    {% if error %}
+    <div class="text-center text-red-500 font-semibold">{{ error }}</div>
+    {% else %}
+   
+    <div class="container mx-auto px-4 py-10">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Explore Blogs</h1>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Blog Card -->
+             {% for all in posts %}
+             <div class="bg-white shadow-md rounded-lg overflow-hidden fade-in">
+                <div class="zoom overflow-hidden">
+                    <img src="{{all.blog_image.url}}" alt="Fashion Blog" class="w-full h-56 object-cover transition-all duration-300">
+                </div>
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-gray-800">{{all.title}}</h2>
+                    <p class="text-gray-600 text-sm mt-2"> {{all.small_description}}.</p>
+                    <div class="mt-3 flex items-center space-x-2 text-gray-500 text-sm">
+                        {% localtime on %}
+                        <span>📅 {{ all.created_at|date:"F j, Y, H:i A" }}</span>
+                        {% endlocaltime %}
+                        <span>🏷️ <a href="#" class="text-blue-500">#{{all.tag}}</a></span>
+                    </div>
+                    <a href="#" class="block mt-4 text-blue-600 font-semibold hover:underline">Read More →</a>
+                </div>
+            </div>
+             {% endfor %}
+            
+            <div class="bg-white shadow-md rounded-lg overflow-hidden fade-in">
+                <div class="zoom overflow-hidden">
+                    <img src="{% static 'images/s3.png' %}" alt="Fashion Blog" class="w-full h-56 object-cover transition-all duration-300">
+                </div>
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-gray-800">The Latest Summer Trends</h2>
+                    <p class="text-gray-600 text-sm mt-2">Discover the hottest fashion trends this summer and how to style them effortlessly.</p>
+                    <div class="mt-3 flex items-center space-x-2 text-gray-500 text-sm">
+                        <span>📅 Jan 28, 2025</span>
+                        <span>🏷️ <a href="#" class="text-blue-500">#Fashion</a></span>
+                    </div>
+                    <a href="#" class="block mt-4 text-blue-600 font-semibold hover:underline">Read More →</a>
+                </div>
+            </div>
+
+            <!-- Blog Card 2 -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden fade-in delay-200">
+                <div class="zoom overflow-hidden">
+                    <img src="{% static 'images/s1.png' %}" alt="Fashion Blog" class="w-full h-56 object-cover transition-all duration-300">
+                </div>
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Ethnic Saree</h2>
+                    <p class="text-gray-600 text-sm mt-2">Master the art of wearing bodycon dresses for parties, casual outings, and special occasions.</p>
+                    <div class="mt-3 flex items-center space-x-2 text-gray-500 text-sm">
+                        <span>📅 Feb 2, 2025</span>
+                        <span>🏷️ <a href="#" class="text-blue-500">#Trendy</a></span>
+                    </div>
+                    <a href="#" class="block mt-4 text-blue-600 font-semibold hover:underline">Read More →</a>
+                </div>
+            </div>
+
+            <!-- Blog Card 3 -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden fade-in delay-400">
+                <div class="zoom overflow-hidden">
+                    <img src="{% static 'images/s2.png' %}" alt="Fashion Blog" class="w-full h-56 object-cover transition-all duration-300">
+                </div>
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Winter Fashion Essentials</h2>
+                    <p class="text-gray-600 text-sm mt-2">Stay stylish and warm this winter with these must-have fashion essentials.</p>
+                    <div class="mt-3 flex items-center space-x-2 text-gray-500 text-sm">
+                        <span>📅 Dec 10, 2024</span>
+                        <span>🏷️ <a href="#" class="text-blue-500">#WinterWear</a></span>
+                    </div>
+                    <a href="#" class="block mt-4 text-blue-600 font-semibold hover:underline">Read More →</a>
+                </div>
+            </div>
+            
+            <div class="bg-white shadow-md rounded-lg overflow-hidden fade-in delay-200">
+                <div class="zoom overflow-hidden">
+                    <img src="{% static 'images/s4.png' %}" alt="Adventure Blog" class="w-full h-56 object-cover transition-all duration-300">
+                </div>
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Adventure Travel: Thrilling Destinations</h2>
+                    <p class="text-gray-600 text-sm mt-2">Looking for an adrenaline rush? Explore the best adventure destinations for hiking, diving, and extreme sports.</p>
+                    <div class="mt-3 flex items-center space-x-2 text-gray-500 text-sm">
+                        <span>📅 Feb 2, 2025</span>
+                        <span>🏷️ <a href="#" class="text-blue-500">#Adventure</a></span>
+                    </div>
+                    <a href="#" class="block mt-4 text-blue-600 font-semibold hover:underline">Read More →</a>
+                </div>
+            </div>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden fade-in delay-400">
+                <div class="zoom overflow-hidden">
+                    <img src="{% static 'images/s5.png' %}" alt="Beach Destinations" class="w-full h-56 object-cover transition-all duration-300">
+                </div>
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Best Tropical Beach Destinations</h2>
+                    <p class="text-gray-600 text-sm mt-2">Relax and unwind in the world's most beautiful beach destinations, from the Maldives to Bora Bora.</p>
+                    <div class="mt-3 flex items-center space-x-2 text-gray-500 text-sm">
+                        <span>📅 Dec 10, 2024</span>
+                        <span>🏷️ <a href="#" class="text-blue-500">#Beaches</a></span>
+                    </div>
+                    <a href="#" class="block mt-4 text-blue-600 font-semibold hover:underline">Read More →</a>
+                </div>
+            </div>
+            
+        
+        </div>
+    </div>
+
+    {% endif %}
+
+  </body>
+  </html>
+  {% endblock %}

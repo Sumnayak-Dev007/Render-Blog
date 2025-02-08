@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Andrea - Free Template</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:wght@400;400i;700;700i&family=Abril+Fatface&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+<body>
+    <!-- Main Content Area -->
+    <div id="colorlib-page" class="min-h-screen flex flex-col md:flex-row md:pl-64">
+      <!-- Main Content -->
+       
+      <div id="colorlib-main" class="md:flex flex flex-col md:flex-row bg-gray-100">
+            <div class="w-full md:w-full bg-cover bg-center h-96 md:h-full">
+                <img src="{% static 'images/me.jpg' %}" alt="picss" class="w-full h-full object-cover">
+            </div>
+            
+          <div class="w-full md:w-full flex flex-col justify-center p-6">
+            <h2 class="text-4xl font-semibold text-gray-800 mb-4">I'm <span class="text-blue-600">Suman Nayak </span> a Jr. Full Stack Developer</h2>
+            <p class="text-gray-700 leading-relaxed">
+              A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
+{% endblock %}

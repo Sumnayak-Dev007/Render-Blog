@@ -40,7 +40,7 @@ class Profile(models.Model):
 
 # server {
 #        listen 80;    
-#        server_name 13.233.133.43;
+#        server_name 3.7.64.88;
 #        location = /favicon.ico {access_log off;log_not_found off;} 
     
     
@@ -52,7 +52,7 @@ class Profile(models.Model):
 
 # server {
 #     listen 80;
-#     server_name 13.233.133.43;
+#     server_name 3.7.64.88;
     
 #     location = /favicon.ico {
 #         access_log off;

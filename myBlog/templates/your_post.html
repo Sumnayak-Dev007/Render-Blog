@@ -12,10 +12,11 @@
 </head>
 <body class="bg-gray-100 text-gray-900">
     <!-- Profile Thumbnail Section -->
+    <div class="container mx-auto px-4 py-10 md:pl-64 mt-4">
     <div class="container mx-auto py-6 px-4 flex items-center justify-between">
         <h1 class="text-4xl font-bold text-blue-600">{{ user.username|title }}'s Latest Blogs</h1>
         <!-- Profile Thumbnail -->
-        <a href="{% url 'profile' %}" class="flex items-center space-x-3 hover:opacity-90">
+        <a href="{% url 'profile' %}" class="flex items-center space-x-3 hover:opacity-90 mr-4">
             {% if user.profile.pic %}
                 <img src="{{ user.profile.pic.url }}" alt="{{ user.username }}" 
                      class="w-12 h-12 rounded-full border-2 border-blue-500 object-cover">
@@ -53,6 +54,7 @@
             </div>
             {% endfor %}
         </div>
+    </div>
     </div>
 </body>
 </html>
