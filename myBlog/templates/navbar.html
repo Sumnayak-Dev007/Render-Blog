@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="bg-gray-100 p-4 shadow-md relative w-full z-50 md:z-0 md:top-0 top-10">
+<nav class="bg-gray-100 p-4 shadow-md relative w-full z-100 md:z-0 md:top-0 top-10">
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo or Brand Name -->
         <div class="text-black text-xl font-bold">
@@ -17,13 +17,14 @@
         </div>
 
         <!-- Navigation Links -->
-        <ul class="flex space-x-6 items-center">
+        <ul class="relative flex space-x-6 items-center z-[1000]">
             {% if user.is_authenticated %}
             <li>
                 <a href="{% url 'profile' %}" class="text-black hover:bg-black hover:text-white px-3 py-2 rounded transition duration-300">
                     PROFILE
                 </a>
             </li>
+            
             <li class="relative group">
                 <div class="flex items-center space-x-2">
                     <button class="text-black hover:bg-black hover:text-white px-2 py-2 rounded transition flex duration-300" id="blogDropdownBtn">
@@ -33,18 +34,26 @@
                 </div>
 
                 <!-- Dropdown Content -->
-                <div id="blogDropdownMenu" class="absolute hidden bg-white shadow-md rounded-md mt-2 w-40 z-[60]">
+                <div id="blogDropdownMenu" class="absolute hidden bg-white shadow-md rounded-md mt-2 w-40 z-[1000]">
                     <a href="{% url 'your_post' %}" class="block px-4 py-2 text-black hover:bg-black hover:text-white">Your Blogs</a>
                     <a>
-                        <form method="post" class="inline" action="{% url 'logout' %}">
+                        <form method="post" class="inline z-100" action="{% url 'logout' %}">
                             {% csrf_token %}
-                        <button type="submit" class="block px-4 py-2 text-black hover:bg-black hover:text-white">
+                        <button type="submit" class="block md:hidden px-4 py-2 text-black hover:bg-black hover:text-white">
                             LOGOUT
                         </button>
                         </form>
                     </a>
                 </div>
             </li>
+            <a class="md:block hidden px-4 py-2 text-black hover:bg-black hover:text-white">
+                <form method="post" class="inline z-100" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                <button type="submit" class="">
+                    LOGOUT
+                </button>
+                </form>
+            </a>
             <li>
                 
             </li>
